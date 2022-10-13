@@ -9,11 +9,18 @@ export interface PostDetailPageProps {
 export default function PostDetailPage({ post }: PostDetailPageProps) {
   const router = useRouter();
 
+  if (router.isFallback) {
+    return (
+      <div style={{ fontSize: "2rem", textAlign: "center" }}>Loading...</div>
+    );
+  }
+
   if (!post) return null;
 
   return (
     <div>
       <h1>Post Detail Page</h1>
+      
       <p>{post.title}</p>
       <p>{post.author}</p>
       <p>{post.description}</p>
@@ -31,7 +38,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: data.data.map((post: any) => ({ params: { postId: post.id } })),
-    fallback: false,
+    fallback: true,
   };
 };
 
@@ -53,5 +60,6 @@ export const getStaticProps: GetStaticProps<PostDetailPageProps> = async (
     props: {
       post: data,
     },
+    revalidate: 300,
   };
 };
