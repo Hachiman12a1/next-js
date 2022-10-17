@@ -8,7 +8,7 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
     data: profile,
     error,
     mutate,
-  } = useSWR<UserProfile | null>("/profile", {
+  } = useSWR("/profile", {
     dedupingInterval: 3600 * 1000, //1hr
     revalidateOnFocus: false,
     ...options,
@@ -23,10 +23,10 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
     });
 
     await mutate();
-  }
+  } 
   async function logout() {
     await authApi.logout();
-    await mutate(null, false);
+    mutate(null, false);
   }
 
   return {
