@@ -22,6 +22,7 @@
       "@/models/*": ["./models/*"],
       "@/api/*": ["./api-client/*"],
       "@/utils/*": ["./utils/*"],
+      "@/images/*": ["./images/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
