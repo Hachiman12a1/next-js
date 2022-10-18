@@ -31,7 +31,7 @@ function MyApp({
           }}
         >
           <Layout>
-            <Component {...pageProps} />;
+            <Component {...pageProps} />
           </Layout>
         </SWRConfig>
       </ThemeProvider>
