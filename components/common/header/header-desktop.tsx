@@ -17,7 +17,7 @@ export function HeaderDesktop(props: HeaderDesktopProps) {
           {ROUTE_LIST.map((route) => (
             <Link key={route.path} href={route.path} passHref>
               <MuiLink
-                sx={{ ml: 2 }}
+                sx={{ ml: 2, fontWeight: "medium" }}
                 className={clsx({ active: router.pathname === route.path })}
               >
                 {route.label}
