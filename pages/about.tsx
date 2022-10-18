@@ -62,7 +62,7 @@ export default function AboutPage(props: AboutProps) {
   );
 }
 
-AboutPage.getLayout = AdminLayout;
+AboutPage.Layout = AdminLayout;
 
 export async function getStaticProps() {
   console.log("get static props");

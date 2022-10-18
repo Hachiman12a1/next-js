@@ -17,7 +17,7 @@ function MyApp({
   pageProps,
   emotionCache = clientSideEmotionCache,
 }: AppPropsWithLayout) {
-  const Layout = Component.getLayout ?? EmptyLayout;
+  const Layout = Component.Layout ?? EmptyLayout;
 
   return (
     <CacheProvider value={emotionCache}>

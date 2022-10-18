@@ -90,6 +90,6 @@ const Home: NextPageWithLayout = () => {
   );
 };
 
-Home.getLayout = MainLayout;
+Home.Layout = MainLayout;
 
 export default Home;
