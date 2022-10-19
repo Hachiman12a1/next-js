@@ -1,10 +1,10 @@
-import axiosClient from "@/api/axios-client";
+import axiosClient from "@/api-client/axios-client";
 import { EmptyLayout } from "@/components/layout";
-import { AppPropsWithLayout } from "@/models/index";
+import { AppPropsWithLayout } from "@/models";
 import { SWRConfig } from "swr";
 import "../styles/globals.css";
 
-import { createEmotionCache, theme } from "@/utils/index";
+import { createEmotionCache, theme } from "@/utils";
 import { CacheProvider } from "@emotion/react";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
@@ -22,7 +22,7 @@ function MyApp({
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
+        <CssBaseline />
 
         <SWRConfig
           value={{

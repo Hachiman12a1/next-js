@@ -1,5 +1,5 @@
 import axiosClient from "./axios-client";
-import { LoginPayload, UserProfile } from '@/models/index';
+import { LoginPayload, UserProfile } from "@/models";
 
 export const authApi = {
   login(payload: LoginPayload) {
@@ -8,7 +8,7 @@ export const authApi = {
   logout() {
     return axiosClient.post("/logout");
   },
-  getProfile() : Promise<UserProfile> {
+  getProfile(): Promise<UserProfile> {
     return axiosClient.get("/profile");
   },
 };
