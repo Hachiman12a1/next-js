@@ -24,7 +24,7 @@ export function FeatureWorks() {
       title: "Vibrant Portraits of 2020",
       createdAt: "1666163907593",
       updatedAt: "1666163907593",
-      tagList: ['Illustration'],
+      tagList: ["Illustration"],
       shortDescription:
         "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.",
       fullDescription: "",
@@ -48,22 +48,9 @@ export function FeatureWorks() {
   return (
     <Box component="section" pt={2} pb={4}>
       <Container>
-        <Stack
-          direction="row"
-          mb={2}
-          justifyContent={{ xs: "center", md: "space-between" }}
-          alignItems="center"
-        >
-          <Typography variant="h5">Featured Posts</Typography>
+        <Typography variant="h5" mb = {4}>Featured Posts</Typography>
 
-          <Link passHref href="/blog">
-            <MuiLink sx={{ display: { xs: "none", md: "inline" } }}>
-              View all
-            </MuiLink>
-          </Link>
-        </Stack>
-
-        <WorkList workList = {workList}/>
+        <WorkList workList={workList} />
       </Container>
     </Box>
   );
