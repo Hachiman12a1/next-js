@@ -1,6 +1,7 @@
 import path from "path";
 import fs from "fs";
 import process from "process";
+import matter from "gray-matter";
 
 const BLOG_FOLDER = path.join(process.cwd(), "Blog");
 export async function getPostList() {
@@ -11,7 +12,12 @@ export async function getPostList() {
   for (const fileName of fileNameList) {
     const filePath = path.join(BLOG_FOLDER, fileName);
     const fileContents = fs.readFileSync(filePath, "utf8");
-    console.log(fileName, "\n", fileContents);
+    // console.log(fileName, "\n", fileContents);
+
+    const matterResult = matter(fileContents, {
+      excerpt_separator: "<!-- truncate-->",
+    });
+    console.log(matterResult);
   }
 
   return [];
