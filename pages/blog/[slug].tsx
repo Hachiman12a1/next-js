@@ -8,6 +8,10 @@ import rehypeDocument from "rehype-document";
 import rehypeFormat from "rehype-format";
 import rehypeStringify from "rehype-stringify";
 import { Container, Divider } from "@mui/material";
+import remarkToc from 'remark-toc'
+import rehypeSlug from "rehype-slug";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+
 
 export interface BlogPageProps {
   post: Post;
@@ -57,7 +61,10 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async (
   // parse md to html
   const file = await unified()
     .use(remarkParse)
+    .use(remarkToc, { heading : 'Agenda.*'})
     .use(remarkRehype)
+    .use(rehypeSlug)
+    .use(rehypeAutolinkHeadings, { behavior : 'wrap'})
     .use(rehypeDocument, { title: "Blog details page" })
     .use(rehypeFormat)
     .use(rehypeStringify)
