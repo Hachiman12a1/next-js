@@ -13,6 +13,7 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import remarkPrism from "remark-prism";
 import Script from "next/script";
+import { Seo } from "@/components/common";
 
 export interface BlogPageProps {
   post: Post;
@@ -23,9 +24,17 @@ export default function BlogPage({ post }: BlogPageProps) {
 
   return (
     <Box>
+      <Seo
+        data={{
+          title: post.title,
+          description: post.description,
+          url: `${process.env.HOST_URL}/blog/${post.slug}`,
+          thumbnailUrl:
+            post.thumbnailUrl ||
+            "https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png",
+        }}
+      />
       <Container>
-        <h1>Blog Detail Page</h1>
-
         <p>{post.title}</p>
         <p>{post.author?.name}</p>
 
@@ -34,7 +43,7 @@ export default function BlogPage({ post }: BlogPageProps) {
         <div dangerouslySetInnerHTML={{ __html: post.htmlContent || "" }}></div>
       </Container>
 
-      <Script src = "/prism.js" strategy="afterInteractive"></Script>
+      <Script src="/prism.js" strategy="afterInteractive"></Script>
     </Box>
   );
 }

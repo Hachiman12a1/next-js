@@ -11,7 +11,7 @@ const Home: NextPageWithLayout = () => {
         data={{
           title: "Dat Next JS ",
           description: "Learn Next JS Base",
-          url: "https://www.facebook.com/",
+          url: "https://next-js-five-nu.vercel.app/",
           thumbnailUrl:
             "https://miro.medium.com/max/1000/1*htbUdWgFQ3a94PMEvBr_hQ.png",
         }}
