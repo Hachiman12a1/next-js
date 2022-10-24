@@ -1,6 +1,13 @@
 import { Post } from "@/models";
 import { getPostList } from "@/utils/posts";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkRehype from "remark-rehype";
+import rehypeDocument from "rehype-document";
+import rehypeFormat from "rehype-format";
+import rehypeStringify from "rehype-stringify";
+import { Container, Divider } from "@mui/material";
 
 export interface BlogPageProps {
   post: Post;
@@ -10,15 +17,16 @@ export default function BlogPage({ post }: BlogPageProps) {
   if (!post) return null;
 
   return (
-    <div>
+    <Container>
       <h1>Blog Detail Page</h1>
 
       <p>{post.title}</p>
       <p>{post.author?.name}</p>
-      <p>{post.description}</p>
 
-      <p>{post.mdContent}</p>
-    </div>
+      <Divider />
+
+      <div dangerouslySetInnerHTML={{ __html: post.htmlContent || "" }}></div>
+    </Container>
   );
 }
 
@@ -45,6 +53,17 @@ export const getStaticProps: GetStaticProps<BlogPageProps> = async (
   if (!post) {
     return { notFound: true };
   }
+
+  // parse md to html
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkRehype)
+    .use(rehypeDocument, { title: "Blog details page" })
+    .use(rehypeFormat)
+    .use(rehypeStringify)
+    .process(post.mdContent || "");
+
+  post.htmlContent = file.toString();
 
   return {
     props: {
