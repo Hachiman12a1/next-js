@@ -3,6 +3,8 @@ import { EmptyLayout } from "@/components/layout";
 import { AppPropsWithLayout } from "@/models";
 import { SWRConfig } from "swr";
 import "../styles/globals.css";
+import "../styles/prism.css";
+
 
 import { createEmotionCache, theme } from "@/utils";
 import { CacheProvider } from "@emotion/react";

@@ -20,6 +20,20 @@ Khi nhắc tới git có khá là nhiều lệnh khác nhau, tuy nhiên trong th
 - Tí nữa, đọc thấy tạo nhánh có số 123 thì các bạn hiểu ngầm nó chính là `taskId` nhen.
 - Ví dụ team mình dev trên nhánh `develop`.
 
+```js[class="line-numbers"]
+function hello() {
+    console.log('Hello World');
+}
+```
+
+```tsx[data-line="2,4"]
+function App() {
+    const [title, setTitle] = useState<string>('Learn Next JS')
+
+    return <p>{title}</p>
+}
+```
+
 ## 1. Lấy code mới nhất trên branch develop
 
 ```sh
