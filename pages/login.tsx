@@ -2,6 +2,7 @@ import * as React from "react";
 import { authApi } from "@/api-client";
 import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
+import { LoginForm } from "@/components/auth";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -43,6 +44,8 @@ export default function LoginPage() {
       <button onClick={handleLoginClick}>Login</button>
       {/* <button onClick={handleGetProfileClick}>Get Profile</button> */}
       <button onClick={handleLogoutClick}>Logout</button>
+
+      <LoginForm/>
     </div>
   );
 }
