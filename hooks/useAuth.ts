@@ -1,7 +1,7 @@
 import useSWR from "swr";
 import { Fetcher, PublicConfiguration } from "swr/dist/types";
 import { authApi } from "@/api-client";
-import { UserProfile } from "@/models";
+import { LoginPayload, UserProfile } from "@/models";
 
 export function useAuth(
   options?: Partial<
@@ -20,12 +20,8 @@ export function useAuth(
 
   const firstLoading = profile === undefined && error === undefined;
 
-  async function login() {
-    await authApi.login({
-      username: "test",
-      password: "123456",
-    });
-
+  async function login(payload: LoginPayload) {
+    await authApi.login(payload);
     await mutate();
   }
   async function logout() {

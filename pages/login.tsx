@@ -3,6 +3,7 @@ import { authApi } from "@/api-client";
 import { useAuth } from "@/hooks";
 import { useRouter } from "next/router";
 import { LoginForm } from "@/components/auth";
+import { LoginPayload } from "@/models";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -12,26 +13,33 @@ export default function LoginPage() {
 
   async function handleLoginClick() {
     try {
-      await login();
+      await login({
+        username: "test1",
+        password: "123123",
+      });
       console.log("Redirect to dashboard");
       router.push("/about");
     } catch (error) {
       console.log("Failed to login", error);
     }
   }
-  // async function handleGetProfileClick() {
-  //   try {
-  //     await authApi.getProfile();
-  //   } catch (error) {
-  //     console.log("Failed to get profile", error);
-  //   }
-  // }
+
   async function handleLogoutClick() {
     try {
       await logout();
       console.log("Redirect lo login page");
     } catch (error) {
       console.log("Failed to logout", error);
+    }
+  }
+
+  async function handleLoginSubmit(payload: LoginPayload) {
+    try {
+      await login(payload);
+      // console.log("Redirect to dashboard");
+      // router.push("/about");
+    } catch (error) {
+      console.log("Failed to login", error);
     }
   }
 
@@ -45,7 +53,7 @@ export default function LoginPage() {
       {/* <button onClick={handleGetProfileClick}>Get Profile</button> */}
       <button onClick={handleLogoutClick}>Logout</button>
 
-      <LoginForm/>
+      <LoginForm onSubmit={handleLoginSubmit} />
     </div>
   );
 }
