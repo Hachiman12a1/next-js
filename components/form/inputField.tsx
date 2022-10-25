@@ -1,6 +1,4 @@
 import { TextField, TextFieldProps } from "@mui/material";
-import { Box } from "@mui/system";
-import * as React from "react";
 import { Control, useController } from "react-hook-form";
 
 export type InputFieldProps = TextFieldProps & {
@@ -25,17 +23,20 @@ export function InputField({
     control,
   });
 
+  console.log(name, error);
+
   return (
     <TextField
       fullWidth
       size="small"
       margin="normal"
       name={name}
-      
       value={value}
       onChange={onChange}
       onBlur={onBlur}
       inputRef={ref}
+      error={!!error}
+      helperText={error?.message}
       {...rest}
     />
   );
